@@ -43,38 +43,70 @@ driver = new ChromeDriver();
   }
   @Test
   public void emprestimo() {
+    int milisegundos = 500;
     driver.get("https://ts-scel.herokuapp.com/");
     driver.manage().window().setSize(new Dimension(974, 968));
+    driver.findElement(By.name("username")).click();
+    driver.findElement(By.name("username")).sendKeys("maria");
+    driver.findElement(By.name("password")).sendKeys("456");
+    esperePor(milisegundos);
+    driver.findElement(By.cssSelector("button")).click();
+    esperePor(milisegundos);
     driver.findElement(By.linkText("Empréstimo")).click();
+    esperePor(milisegundos);
     driver.findElement(By.id("isbn")).click();
     driver.findElement(By.id("isbn")).sendKeys("1234");
+    esperePor(milisegundos);
     driver.findElement(By.id("ra")).click();
     driver.findElement(By.id("ra")).sendKeys("123");
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector(".btn:nth-child(1)")).click();
+    esperePor(milisegundos);
     driver.findElement(By.id("ra")).click();
     driver.findElement(By.id("ra")).sendKeys("1234");
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector("body")).click();
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector(".btn:nth-child(1)")).click();
+    esperePor(milisegundos);
     driver.findElement(By.id("isbn")).click();
+    esperePor(milisegundos);
     driver.findElement(By.id("isbn")).click();
     driver.findElement(By.id("isbn")).sendKeys("12345");
+    esperePor(milisegundos);
     driver.findElement(By.id("ra")).click();
     driver.findElement(By.id("ra")).sendKeys("12345");
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector(".btn:nth-child(1)")).click();
+    esperePor(milisegundos);
     driver.findElement(By.id("isbn")).click();
     driver.findElement(By.id("isbn")).sendKeys("1234");
+    esperePor(milisegundos);
     driver.findElement(By.id("ra")).click();
     driver.findElement(By.id("ra")).sendKeys("1234");
     driver.findElement(By.id("ra")).sendKeys(Keys.ENTER);
+    esperePor(milisegundos);
     driver.findElement(By.id("ra")).click();
     driver.findElement(By.id("ra")).sendKeys("1235");
     driver.findElement(By.id("ra")).sendKeys(Keys.ENTER);
     vars.put("window_handles", driver.getWindowHandles());
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector(".btn:nth-child(2)")).click();
     vars.put("win2379", waitForWindow(2000));
     driver.switchTo().window(vars.get("win2379").toString());
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector("tr:nth-child(1) > td:nth-child(6)")).click();
+    esperePor(milisegundos);
     driver.findElement(By.linkText("Devolver")).click();
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector("tr:nth-child(2) .btn")).click();
+  }
+
+  public void esperePor(int milisegundos) {
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }

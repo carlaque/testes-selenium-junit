@@ -28,18 +28,33 @@ driver = new ChromeDriver();
   }
   @Test
   public void rEQ01CT01CadastroComSucesso() {
+    int milisegundos = 500;
     driver.get("https://ts-scel.herokuapp.com/login");
     driver.manage().window().setSize(new Dimension(974, 1087));
     driver.findElement(By.name("username")).sendKeys("maria");
     driver.findElement(By.name("password")).sendKeys("456");
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector("button")).click();
+    esperePor(milisegundos);
     driver.findElement(By.linkText("Livros")).click();
+    esperePor(milisegundos);
     driver.findElement(By.id("isbn")).click();
     driver.findElement(By.id("isbn")).sendKeys("1234");
+    esperePor(milisegundos);
     driver.findElement(By.id("autor")).click();
     driver.findElement(By.id("autor")).sendKeys("mauricio");
+    esperePor(milisegundos);
     driver.findElement(By.id("titulo")).click();
     driver.findElement(By.id("titulo")).sendKeys("turma da monica 1");
+    esperePor(milisegundos);
     driver.findElement(By.cssSelector(".btn:nth-child(1)")).click();
+  }
+
+  public void esperePor(int milisegundos) {
+    try {
+      Thread.sleep(3000);
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+    }
   }
 }
